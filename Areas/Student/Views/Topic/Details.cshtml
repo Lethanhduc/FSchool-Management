@@ -1,0 +1,140 @@
+﻿@model TCS2010PPTG4.Models.Topic
+
+@{
+    ViewData["Title"] = "Details";
+
+    var currentContribution = (Contribution)ViewData["currentContribution"];
+    var contributorId = ViewData["ContributorId"];
+
+    var contribution = new Contribution();
+
+    var comments = (List<Comment>)ViewData["Comments"];
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .overflow{
+            overflow: scroll;
+            width: 1000px;
+            height: 300px;
+        }
+        body {
+            background: linear-gradient(0.25turn, #ebf8e1, #4fd18e, #ebf8e1);
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1> Details Topics </h1>
+    <div class="container">
+        <div class=" row">
+            <table class="table table-dark table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </th>
+                        <th>
+                            @Html.DisplayFor(model => model.Title)
+                        </th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.Deadline_1)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Deadline_1)
+                        </td>
+                        <td>
+                            @Html.DisplayNameFor(model => model.Deadline_2)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Deadline_2)
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    @if (currentContribution == null)
+    {
+        <div>No submission yet.</div>
+    }
+    else
+    {
+        <div>Status: @currentContribution.Status</div>
+        foreach (var file in currentContribution.Files)
+        {
+            <div>
+                <a asp-action="DownloadFile" asp-route-fileId="@file.Id">
+                    @System.IO.Path.GetFileName(file.URL)
+
+                </a>
+            </div>
+        }
+    }
+    <form asp-action="Upload" enctype="multipart/form-data" class="@(Model.Deadline_2 < DateTime.Now ? "d-none" : "")">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="@contribution.Status" value="@ContributionStatus.Pending" />
+        <input type="hidden" asp-for="@contribution.ContributorId" value="@ViewBag.ContributorId" />
+        <input type="hidden" asp-for="@contribution.TopicId" value="@Model.Id" />
+
+        <div class="form-group">
+            <input type="file" name="file" class="form-control" />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Upload" class="btn btn-primary" />
+        </div>
+    </form>
+
+    <div class="overflow">
+        @if (comments != null)
+        {
+            foreach (var comment in comments)
+            {
+                <div>
+                    @comment.User.Email (@comment.Date) : @comment.Content
+                    <form asp-action="DeleteComment">
+                        <input name="commentId" value="@comment.Id" type="hidden" />
+                        <button type="submit">Delete</button>
+                    </form>
+                </div>
+            }
+        }
+    </div>
+    <form asp-action="comment">
+        <input type="hidden" name="topicId" value="@Model.Id" />
+        <textarea name="commentContent"></textarea>
+        <p></p>
+        <button type="submit">Comment</button>
+    </form>
+
+    <p></p>
+    <div>
+        
+        <a class="btn btn-danger" asp-action="Index">Back to List</a>
+    </div>
+
+</body>
+</html>
