@@ -1,0 +1,60 @@
+﻿@{
+
+}
+<div class=" d-flex text-center text-light">
+    <div class="col-4 bg-success align-middle p-4">
+        <h3 class="mb-3">@ViewBag.TotalStudent</h3>
+        <div>Students</div>
+    </div>
+
+    <div class="col-4 bg-warning align-middle p-4">
+        <h3 class="mb-3">@ViewBag.TotalStudentOfDept </h3>
+        <div>
+            Students
+        </div>
+    </div>
+
+    <div class="col-4 bg-success align-middle p-4">
+        <h3 class="mb-3">@ViewBag.TotalDepartment</h3>
+        <div>Department</div>
+    </div>
+</div>
+<div id="chart"></div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+    var test;
+    $(document).ready(function () {
+        $.ajax({
+            type: 'GET',
+            dataType: "json",
+            contentType: "application/json",
+            url: '/api/report/manager_contribution',
+            success: function (result) {
+                test = result;
+                google.charts.load('current', { 'packages': ['corechart'] });
+                google.charts.setOnLoadCallback(function () { drawChart(result); });
+            }
+        });
+    });
+
+    function drawChart(result) {
+        var chartwidth = $(".container").width() / 2;
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'DepartmentName');
+        data.addColumn('number', 'TotalContribution');
+
+        var dataArray = [];
+        $.each(result, function (i, obj) { dataArray.push([obj.departmentName, obj.totalContribution]); });
+        data.addRows(dataArray);
+
+        var options = {
+            legend: 'Contribution of Department',
+            width: chartwidth,
+            height: chartwidth
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('chart'));
+        chart.draw(data, options);
+    }
+</script>
