@@ -1,22 +1,62 @@
 ﻿@{
 
 }
-<div class=" d-flex text-center text-light">
-    <div class="col-4 bg-success align-middle p-4">
-        <h3 class="mb-3">@ViewBag.TotalStudent</h3>
-        <div>Students</div>
-    </div>
-
-    <div class="col-4 bg-warning align-middle p-4">
-        <h3 class="mb-3">@ViewBag.TotalStudentOfDept </h3>
-        <div>
-            Students
+<div class="container border-info text-sm-center text-white">
+    <div class="row">
+        <div class="col-xl-4 table-borderless align-middle bg-secondary">
+            <h3 class="mb-4"></h3>
+            <div>IT</div>
         </div>
-    </div>
+        <div class="col-xl-4 table-bordered align-middle bg-info">
+            <h3 class="mb-4">@ViewBag.TotalCoorOfIT</h3>
+            <div>Total IT Coors</div>
+        </div>
+        <div class="col-xl-4 table-bordered align-middle bg-primary">
+            <h3 class="mb-4">@ViewBag.TotalStudentOfIT</h3>
+            <div>Total IT Students</div>
+        </div>
 
-    <div class="col-4 bg-success align-middle p-4">
-        <h3 class="mb-3">@ViewBag.TotalDepartment</h3>
-        <div>Department</div>
+
+        <div class="col-xl-4 table-bordered align-middle bg-secondary">
+            <h3 class="mb-4"></h3>
+            <div>BA</div>
+        </div>
+        <div class="col-xl-4 table-bordered align-middle bg-info">
+            <h3 class="mb-4">@ViewBag.TotalCoorOfBA</h3>
+            <div>Total BA Coors</div>
+        </div>
+        <div class="col-xl-4 table-bordered align-middle bg-primary">
+            <h3 class="mb-4">@ViewBag.TotalStudentOfBA</h3>
+            <div>Total BA Students</div>
+        </div>
+
+
+        <div class="col-xl-4 table-bordered align-middle bg-secondary">
+            <h3 class="mb-4"></h3>
+            <div>Design</div>
+        </div>
+        <div class="col-xl-4 table-bordered align-middle bg-info">
+            <h3 class="mb-4">@ViewBag.TotalCoorOfDesign</h3>
+            <div>Total Design Coors</div>
+        </div>
+        <div class="col-xl-4 table-bordered align-middle bg-primary">
+            <h3 class="mb-4">@ViewBag.TotalStudentOfDesign</h3>
+            <div>Total Design Students</div>
+        </div>
+
+
+        <div class="col-xl-4 table-bordered align-middle bg-secondary">
+            <h3 class="mb-4">@ViewBag.TotalDepartment</h3>
+            <div>Total Departments</div>
+        </div>
+        <div class="col-xl-4 table-bordered align-middle bg-info">
+            <h3 class="mb-4">@ViewBag.TotalCoor</h3>
+            <div>Total Coors</div>
+        </div>
+        <div class="col-xl-4 table-bordered align-middle bg-primary">
+            <h3 class="mb-4">@ViewBag.TotalStudent</h3>
+            <div>Total Students</div>
+        </div>
     </div>
 </div>
 <div id="chart"></div>
@@ -54,7 +94,7 @@
             height: chartwidth
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('chart'));
+        var chart = new google.visualization.BarChart(document.getElementById('chart'));
         chart.draw(data, options);
     }
 </script>
