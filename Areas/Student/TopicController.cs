@@ -12,9 +12,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TCS2010PPTG4.Data;
 using TCS2010PPTG4.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TCS2010PPTG4.Areas.Student
 {
+    [Authorize(Roles = "Student")]
     [Area("Student")]
     public class TopicController : Controller
     {
@@ -142,7 +144,7 @@ namespace TCS2010PPTG4.Areas.Student
                             if (!Directory.Exists(path)) { Directory.CreateDirectory(path); }
                             // Upload file, create file
                             path = Path.Combine(path, String.Format("{0}.{1:yyyy-MM-dd.ss-mm-HH}{2}", user.Number, DateTime.Now, fileExtension));
-                            var stream = new FileStream(path, FileMode.Create);
+                            using var stream = new FileStream(path, FileMode.Create);
                             file.CopyTo(stream);
                             var newFile = new SubmittedFile();
                             newFile.ContributionId = existContribution.Id;

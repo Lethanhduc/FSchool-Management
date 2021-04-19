@@ -8,9 +8,11 @@ using System.Collections.Generic;
 using System.Linq;
 using TCS2010PPTG4.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TCS2010PPTG4.Areas.Admin
 {
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     public class UserController : Controller
     {
@@ -85,7 +87,7 @@ namespace TCS2010PPTG4.Areas.Admin
             {
                 return NotFound();
             }
-
+            ViewData["Departments"] = new SelectList(_context.Department.ToList(), "Id", "Name");
             return View(user);
         }
 

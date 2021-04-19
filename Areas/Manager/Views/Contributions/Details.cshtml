@@ -36,6 +36,7 @@
     </style>
 </head>
 <body>
+    
     <h1> Detail Contributions </h1>
 
     <div class="container">
@@ -62,7 +63,7 @@
                             <td>@Html.DisplayFor(model => model.Topic.Id)</td>
                             <td>
                                 <div>
-                                    <a class="btn btn-success" asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+                                    <a class="btn btn-success" asp-action="Edit" asp-route-id="@Model.Id">Edit</a> 
                                     <a class="btn btn-danger" asp-action="Index">Back to List</a>
                                 </div>
 
@@ -105,7 +106,7 @@
         <button type="submit">Comment</button>
     </form>
     <div>
-        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> 
         <a asp-area="Manager" asp-controller="Contributions" asp-action="Index" asp-route-topicId="@Model.Id">Back</a>
     </div>
 </body>

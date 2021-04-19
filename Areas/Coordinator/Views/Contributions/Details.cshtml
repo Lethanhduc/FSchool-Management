@@ -11,11 +11,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <style>
-        .overflow{
+        .overflow {
             overflow: scroll;
             width: 1000px;
             height: 300px;
+            background: white;
         }
+
         body {
             background: linear-gradient(0.25turn, #ebf8e1, #4fd18e, #ebf8e1);
         }
@@ -33,9 +35,33 @@
             background-color: #4CAF50;
             color: white;
         }
+
+        select {
+            padding: 5px;
+        }
+
+        * {
+            margin: 5px;
+        }
+
+        .button:hover {
+            background-color: #3e8e41
+        }
+
+        .button:active {
+            background-color: #3e8e41;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+
+        textarea {
+            width: 800px;
+            height: 50px;
+        }
     </style>
 </head>
 <body>
+
     <h1> Detail Contributions </h1>
 
     <div class="container">
@@ -45,8 +71,11 @@
                     <thead>
                         <tr>
                             <th> @Html.DisplayNameFor(model => model.Status)</th>
-
-                            <th>@Html.DisplayFor(model => model.Status)</th>
+                            <th></th>
+                            <th></th>
+                            <th>  @Html.DisplayNameFor(model => model.Contributor)</th>
+                            <th></th>
+                            <th></th>
                             <th>@Html.DisplayNameFor(model => model.Topic)</th>
                             <th></th>
                             <th></th>
@@ -55,11 +84,13 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>  @Html.DisplayNameFor(model => model.Contributor)</td>
-
-                            <td>@Html.DisplayFor(model => model.Contributor.Id)</td>
-
-                            <td>@Html.DisplayFor(model => model.Topic.Id)</td>
+                            <td>@Html.DisplayFor(model => model.Status)</td>
+                            <td></td>
+                            <td></td>
+                            <td>@Html.DisplayFor(model => model.Contributor.Email)</td>
+                            <td></td>
+                            <td></td>
+                            <td>@Html.DisplayFor(model => model.Topic.Title)</td>
                         </tr>
 
                     </tbody>
@@ -71,7 +102,10 @@
     <form asp-action="Mark">
         <input type="hidden" name="contributionId" value="@Model.Id" />
         <select asp-for="Status" asp-items="Html.GetEnumSelectList<ContributionStatus>()" name="contributionStatus"></select>
-        <button type="submit">Mark</button>
+        <button style="padding: 5px 10px; font-size: 20px; text-align: center; cursor: pointer; outline: none; color: #fff;
+         background-color: #4CAF50; border: none; border-radius: 15px; box-shadow: 0 5px #999; margin-bottom: 20px;" type="submit">
+            Mark
+        </button>
     </form>
 
     @foreach (var file in Model.Files)
@@ -82,22 +116,25 @@
             </a>
         </div>
     }
-<div class="overflow">
-    @if (comments != null)
-    {
-        foreach (var comment in comments)
+    <div class="overflow">
+        @if (comments != null)
         {
-            <div>
-                @comment.User.Email (@comment.Date) : @comment.Content
-            </div>
+            foreach (var comment in comments)
+            {
+                <div>
+                    @comment.User.Email (@comment.Date) : @comment.Content
+                </div>
+            }
         }
-    }
-</div>
+    </div>
     <form asp-action="comment">
         <input type="hidden" name="contributionId" value="@Model.Id" />
         <textarea name="commentContent"></textarea>
         <p></p>
-        <button type="submit">Comment</button>
+        <button style="padding: 5px 10px; font-size: 20px; text-align: center; cursor: pointer; outline: none; color: #fff;
+          background-color: #4CAF50; border: none; border-radius: 15px; box-shadow: 0 5px #999;" type="submit">
+            Comment
+        </button>
     </form>
     <p></p>
     <div>

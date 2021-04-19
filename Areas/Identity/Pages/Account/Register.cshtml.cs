@@ -19,7 +19,7 @@ using TCS2010PPTG4.Models;
 
 namespace TCS2010PPTG4.Areas.Identity.Pages.Account
 {
-    [AllowAnonymous]
+    [Authorize(Roles = "Admin")]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<CUser> _signInManager;

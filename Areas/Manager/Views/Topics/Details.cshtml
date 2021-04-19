@@ -35,6 +35,7 @@
     </style>
 </head>
 <body>
+   
     <h1> Detail Topics </h1>
 
     <div class="container">
@@ -43,26 +44,26 @@
                 <table class="table table-dark table-hover">
                     <thead>
                         <tr>
-                                   <th >@Html.DisplayNameFor(model => model.Title)</th>
-                                
-                                   <th >@Html.DisplayFor(model => model.Title)</th>
+                            <th>@Html.DisplayNameFor(model => model.Title)</th>
+
+                            <th>@Html.DisplayFor(model => model.Title)</th>
                             <th></th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                                   <td> @Html.DisplayNameFor(model => model.Deadline_1)</td>
-                              
-                                    <td>@Html.DisplayFor(model => model.Deadline_1)</td>
-                                                
-                                    <td>@Html.DisplayNameFor(model => model.Deadline_2)</td>
-                               
-                                    <td>@Html.DisplayFor(model => model.Deadline_2)</td>
-                               <td>
+                            <td> @Html.DisplayNameFor(model => model.Deadline_1)</td>
+
+                            <td>@Html.DisplayFor(model => model.Deadline_1)</td>
+
+                            <td>@Html.DisplayNameFor(model => model.Deadline_2)</td>
+
+                            <td>@Html.DisplayFor(model => model.Deadline_2)</td>
+                            <td>
                                 <div>
-                                    <a class="btn btn-success" asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-                                    <a class="btn btn-danger"asp-action="Index">Back to List</a>
+                                    <a class="btn btn-success" asp-action="Edit" asp-route-id="@Model.Id">Edit</a> 
+                                    <a class="btn btn-danger" asp-action="Index">Back to List</a>
                                 </div>
 
                             </td>

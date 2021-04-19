@@ -15,12 +15,16 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css
+">
     <style>
-        .overflow{
+        .overflow {
             overflow: scroll;
             width: 1000px;
             height: 300px;
+            background: white;
         }
+
         body {
             background: linear-gradient(0.25turn, #ebf8e1, #4fd18e, #ebf8e1);
         }
@@ -38,9 +42,26 @@
             background-color: #4CAF50;
             color: white;
         }
+
+        .button:hover {
+            background-color: #3e8e41
+        }
+
+        .button:active {
+            background-color: #3e8e41;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+
+        textarea {
+            width: 800px;
+            height: 50px;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
+
     <h1> Details Topics </h1>
     <div class="container">
         <div class=" row">
@@ -101,7 +122,7 @@
         <input type="hidden" asp-for="@contribution.TopicId" value="@Model.Id" />
 
         <div class="form-group">
-            <input type="file" name="file" class="form-control" />
+            <input style="margin-bottom:20px; padding-bottom:40px;" type="file" name="file" class="form-control" />
         </div>
         <div class="form-group">
             <input type="submit" value="Upload" class="btn btn-primary" />
@@ -113,11 +134,15 @@
         {
             foreach (var comment in comments)
             {
-                <div>
-                    @comment.User.Email (@comment.Date) : @comment.Content
-                    <form asp-action="DeleteComment">
-                        <input name="commentId" value="@comment.Id" type="hidden" />
-                        <button type="submit">Delete</button>
+                <div class="input-group row">
+                    <div class="col">
+                        @comment.User.Email (@comment.Date) : @comment.Content
+                    </div>
+                    <form asp-action="DeleteComment" class="mb-2">
+                        <input style="font-size:20px;" name="commentId" value="@comment.Id" type="hidden" />
+                        <div class="input-group-append">
+                            <button class="btn btn-default" type="submit"><i class="fa fa-trash-o" style="font-size:30px;color:red"></i></button>
+                        </div>
                     </form>
                 </div>
             }
@@ -127,12 +152,15 @@
         <input type="hidden" name="topicId" value="@Model.Id" />
         <textarea name="commentContent"></textarea>
         <p></p>
-        <button type="submit">Comment</button>
+        <button style="padding: 5px 10px; font-size: 20px; text-align: center; cursor: pointer; outline: none; color: #fff;
+          background-color: #4CAF50; border: none; border-radius: 15px; box-shadow: 0 5px #999; margin-bottom: 20px;" type="submit" class="btn btn-success">
+            Comment
+        </button>
     </form>
 
     <p></p>
     <div>
-        
+
         <a class="btn btn-danger" asp-action="Index">Back to List</a>
     </div>
 

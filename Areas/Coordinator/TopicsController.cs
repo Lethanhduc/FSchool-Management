@@ -9,9 +9,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TCS2010PPTG4.Data;
 using TCS2010PPTG4.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TCS2010PPTG4.Areas.Coordinator
 {
+    [Authorize(Roles = "Coordinator, Manager")]
     [Area("Coordinator")]
     public class TopicsController : Controller
     {
@@ -107,7 +109,7 @@ namespace TCS2010PPTG4.Areas.Coordinator
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Deadline_1")] Topic topic)
+        public async Task<IActionResult> Edit(int id, Topic topic)
         {
             if (id != topic.Id)
             {

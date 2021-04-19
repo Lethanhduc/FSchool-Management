@@ -38,6 +38,7 @@
 </head>
 <body>
 
+
     <h1>List of User</h1>
 
     <p>
@@ -83,9 +84,9 @@
             @Html.DisplayFor(modelItem => item.LastName)
         </td>
         <td>
-            <a asp-action="Assign" asp-route-id="@item.Id" class="btn btn-primary "><i class="fa fa-user-alt"></i></a>
-            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary "><i class="fa fa-user-edit"></i></a>
-            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger"><i class="fa fa-user-alt-slash" style="color:white;"></i></a>
+            <a asp-action="Assign" asp-route-id="@item.Id" class="btn btn-primary " title="Assign"><i class="fa fa-user-alt"></i></a>
+            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary " title="Edit"><i class="fa fa-user-edit"></i></a>
+            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger"title="Delete"><i class="fa fa-user-alt-slash" style="color:white;"></i></a>
         </td>
     </tr>
              }

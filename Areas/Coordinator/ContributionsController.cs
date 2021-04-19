@@ -13,9 +13,11 @@ using Microsoft.EntityFrameworkCore;
 using MimeKit;
 using TCS2010PPTG4.Data;
 using TCS2010PPTG4.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TCS2010PPTG4.Areas.Coordinator
 {
+    [Authorize(Roles = "Coordinator, Manager")]
     [Area("Coordinator")]
     public class ContributionsController : Controller
     {
