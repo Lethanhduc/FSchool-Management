@@ -18,11 +18,6 @@ a.navbar-brand {
 }
 
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
 
 .border-top {
   border-top: 1px solid #e5e5e5;
@@ -50,11 +45,6 @@ button.accept-policy {
 
 
 
-@media (max-width: 767px) {
-    .featured-posts__item__img {
-        display: block;
-        width: 105px;
-    }
     .post-item__content {
       padding: 0 30px 30px;
   }
@@ -65,5 +55,5 @@ button.accept-policy {
     margin-top: 15px;
   }
   
-}
+
 
